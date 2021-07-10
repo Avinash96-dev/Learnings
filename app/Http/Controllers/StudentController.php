@@ -14,12 +14,11 @@ class StudentController extends Controller
 
     public function createStudent(Request $request)
     {
-        // $this->validate($request , [
-        //     'name' => 'required',
-        //     'email' =>'required|email'
-        // ],[
-        //     'name.required' => 'We need a name',
-        // ]);
+         $request->validate([
+            'name' => 'required|regex:/^[a-z A-Z.]+$/',
+            'email' => 'email|required',
+            'file' => 'image|required|max:2000|mimes:jpeg,png,jpg'
+        ]);
 
         $name = $request->name;
         $email = $request->email;
@@ -64,7 +63,6 @@ class StudentController extends Controller
         unlink(public_path('images'.'/'.$deleteStudent->Image));
         $deleteStudent->delete();
         return back()->with('student_deleted','Student data deleted successfully');
-
     }
 }
 

@@ -28,16 +28,19 @@
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" name="name"  value = "{{$editStudent->Name}}" class="form-control"/>
+                                <span class="help-block" style="color:red"> @error('name'){{$message}}@enderror </span>                           
                             </div>
                             
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text" name="email" value="{{$editStudent->Email}}" class="form-control"/>
+                                <span class="help-block" style="color:red"> @error('email'){{$message}}@enderror </span>                           
                             </div>
                             
                             <div class="form-group">
                                 <label for="filr">Choose Profile Image</label>
                                 <input type="file" name="file" class="form-control" onchange="previewFile(this)"/>
+                                <span class="help-block" style="color:red"> @error('file'){{$message}}@enderror </span>                           
                                 <img id="previewImg" alt="profile image" src="{{asset('images')}}/{{$editStudent->Image}}" style="max-width:130px;margin-top:20px"/>
                             </div>
                             

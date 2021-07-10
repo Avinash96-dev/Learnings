@@ -27,32 +27,37 @@
                         @endif
 
                         
-                        
+                        <!-- @if ($errors->any())
+                        @foreach ($errors->all() as $err)
+                            <span class="help-block" >
+                            <li>{{$err}}</li>
+                            </span>
+                        @endforeach
+                        @endif -->
+
                             <form method = "Post" action = "{{route('student.create')}}" enctype = "multipart/form-data">
                             @csrf
                             
-                            <div class="form-group {{$errors->has('name') ? 'has-error' : ''}} ">
+                            <div class="form-group">
                                 <label for="name" class="control-label">Name</label>
                                 <input type="text" name="name"  value="{{old('name')}}" class="form-control"/>
+                                <span class="help-block" style="color:red"> @error('name'){{$message}}@enderror </span>                           
                             </div>
                             
-                            <div class="form-group {{$errors->has('email') ? 'has-error' : ''}} ">
+                            <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text" name="email"  class="form-control"/>
+                                <span class="help-block" style="color:red"> @error('email'){{$message}}@enderror </span>                           
                             </div>
                             
-                            <div class="form-group {{$errors->has('file') ? 'has-error' : ''}} ">
+                            <div class="form-group">
                                 <label for="file">Choose Profile Image</label>
                                 <input type="file" name="file" class="form-control" onchange="previewFile(this)"/>
+                                <span class="help-block" style="color:red"> @error('file'){{$message}}@enderror </span>                           
                                 <img id="previewImg" alt="profile image" style="max-width:130px;margin-top:20px"/>
                             </div>
 
-                            <!-- @if ($errors->has('name'))
-                            <span class="help-block" >
-                                {{$errors->first('name')}}
-                            </span>
-                            @endif -->
-
+                            
                             <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
